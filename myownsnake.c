@@ -1,9 +1,8 @@
 #include<stdio.h>
 #include <stdlib.h>
-#include<conio.h>
 //checking for operating system
 #ifdef _WIN32
-    //code for Windows (32-bit and 64-bit, this part is common)
+    //code for Windows (32-bit and 64-bit)
     #include <conio.h>
     #define CLEARSCREEN system("cls")
     #define CHECKKEY _kbhit()
@@ -74,16 +73,34 @@ void setup()
 	}
 	countTail=0;
 }
+void loading()
+{
+	printf("\n\n\n\n\n\n\n\n");
+	printf("\t\t\t\t\tLoading ...\n\t\t\t\t");
+	for(int i=0;i<25;i++)
+	{
+		printf(":");
+		for(int j=0;j<20000;j++)
+		{
+			for(int k=0;k<10000;k++)
+			{
 
+			}
+		}
+	}
+}
 
 //board
 void board()
 {
 	CLEARSCREEN;
-	printf("\tScore = %d \t\t\t\t\t\t Length = %d \n\n",score,length);
-	for(int i=0;i<bheight;i++)
+	printf("\n\n\t\t\tPress W for ^ A for < S for v and d for > ....\n");
+	printf("\n\tScore = %d \t\t\t\t\t\t Length = %d \n\n",score,length);
+	int i=0;
+	while(i<bheight)
 	{
-		for(int j=0;j<bwidth;j++)
+		int j=0;
+		while(j<bwidth)
 		{
 			if(i==0||i==bheight-1||j==0||j==bwidth-1)
 			{
@@ -116,15 +133,18 @@ void board()
 						}
 				}
 			}
+			j++;
 		}
 		printf("\n");
+		i++;
 	}
 }
 void input()
 {
 	if(CHECKKEY)
 	{
-		switch(NBGETCHAR)		{
+		switch(NBGETCHAR)		
+		{
 			case 'a':
 				flag=1;
 				mouth='<';
@@ -166,10 +186,10 @@ void MakeLogic()
 	switch(flag)
 	{
 		case 1:
-			y--;
+			y-=2;
 			break;
 		case 2:
-			y++;
+			y+=2;
 			break;
 		case 3:
 			x--;
@@ -195,7 +215,7 @@ void MakeLogic()
 	{
 		gameOver=1;
 	}
-	if(x==fruitX && y==fruitY)
+	if(x==fruitX && y==fruitY|| x== fruitX && fruitY==y+1)
 	{
 		label1:
 		fruitX = rand()%29;
@@ -217,6 +237,7 @@ void MakeLogic()
 }
 int main()
 {
+	loading();
 	while(1)
 	{
 		setup();
@@ -230,17 +251,17 @@ int main()
 		if(gameOver==1)
 		{
 			printf("\n");
-			printf("\n");
-			printf("\t   ((((      ()     ()      () (((((((      (()) (        ) ((((((  ()))))\n");
-			printf("\t (     (    (  )    ( )    ( ) (           (    ) (      )  (       ()   ))\n");
-			printf("\t(          ((()))   (  )  (  ) ((((       (      ) (    )   (((     ()))))\n");
-			printf("\t (  ((((  (      )  (   )(   ) (           (    )   (  )    (       ()   ))\n");
-			printf("\t   ((  ( (        ) (        ) (((((((      (())     ()     ((((((  ()    ))\n");
+			printf("\n\n\n\n\n\n\n\n");
+			printf("\t   (()))      ()     ()      () (((((((      (()) (        ) ((((((  ()))))\n");
+			printf("\t (     ))    (  )    ( )    ( ) (           (    ) (      )  (       ()   ))\n");
+			printf("\t(           ((()))   (  )  (  ) ((((       (      ) (    )   (((     ()))))\n");
+			printf("\t (  (((((  (      )  (   )(   ) (           (    )   (  )    (       ()   ))\n");
+			printf("\t   ((  (( (        ) (        ) (((((((      (())     ()     ((((((  ()    ))\n");
 		}
 		printf("\n");
 		printf("\n");
 		char ch1;
-		printf("Press Y to Play Again and N to Exit ::-- ");
+		printf("\t\t\t\tPress Y to Play Again and N to Exit ::-- ");
 		scanf("%c",&ch1);
 		if(ch1 == 'y' || ch1 == 'Y')
 		{
